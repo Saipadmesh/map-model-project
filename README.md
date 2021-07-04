@@ -1,5 +1,5 @@
 # map-model-project
-A small project made using flask that simulates traffic junctions and roads in a smaller scale using a graphDB
+A project made using flask that simulates traffic junctions and roads in a smaller scale using a graphDB
 
 The model also uses Djikstra's algorithm to determine shortest route between two junctions.
 The project uses Bokeh and Bootstrap to display the output in a webpage.
