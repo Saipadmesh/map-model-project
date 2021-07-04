@@ -1,0 +1,131 @@
+{% extends 'base.html' %} {% block head %}
+<title>Map</title>
+{% endblock %} {% block body %}
+<br />
+<h1>Map</h1>
+<br />
+<div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
+    
+    <iframe src="{{url_for('static',filename = 'city_map.html',_=current_time)}}" frameborder="0"  style="position : absolute; height:620px;width:850px;" >
+        
+    </iframe>
+    <div class="float-right" style="position: absolute; top: 10%;  left: 80%;" >
+        <img src="{{url_for('static',filename = 'Legend.jpg')}}" alt="Legend" srcset="">
+        </div>
+
+</div>
+
+<br>
+<hr>
+<br>
+<h1>Shortest Route</h1>
+<br>
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+<form action="/shortestroute" method="POST">
+    <label for="jname1">First Junction:</label>
+    <select name="jname1" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="jname2">Second Junction:</label>
+    <select name="jname2" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Show Route" class="btn btn-primary"/>
+</form>
+<br>
+{% if isRoute %}
+<div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center" id = "short_route">
+    {% if scroll %}
+<script>
+    document.getElementById('{{ scroll }}').scrollIntoView();
+    
+   
+</script>
+{% endif %}
+
+    <iframe src="{{url_for('static',filename = 'city_map1.html',_=current_time)}}" frameborder="0"  style="position : absolute; height:620px;width:850px;" >
+        
+    </iframe>
+    <div class="float-right" style="position: absolute; top: 10%;  left: 80%;" >
+        <img src="{{url_for('static',filename = 'Legend.jpg')}}" alt="Legend" srcset="">
+        </div>
+
+</div>
+<h4>
+    Total Distance = {{cost}} km
+    <br>
+    <!--Route:
+    <br>
+    {% for i in range(junctionlist|length -1) %}
+    Along {{roadlist[i]}} till {{jnlist[i]}}
+    <br>
+    {% endfor %} -->
+</h4>
+       
+{% endif %}
+<br>
+<hr>
+<br>
+<h1>Shortest Route By Type</h1>
+<br>
+<form action="/shortest_route_by_type" method="post">
+    <label for="jname">First Junction:</label>
+    <select name="jname" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="jtype">Destination Type:</label>
+    <select name="jtype" class="form-control">
+        {% for o in option_list %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Show Route" class="btn btn-primary"/>
+</form>
+<br>
+{% if isRoute_byType %}
+<div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center" id = "short_route_by_type">
+    {% if scroll %}
+<script>
+    document.getElementById('{{ scroll }}').scrollIntoView();
+    
+   
+</script>
+{% endif %}
+
+    <iframe src="{{url_for('static',filename = 'city_map2.html',_=current_time)}}" frameborder="0"  style="position : absolute; height:620px;width:850px;" >
+        
+    </iframe>
+    <div class="float-right" style="position: absolute; top: 10%;  left: 80%;" >
+        <img src="{{url_for('static',filename = 'Legend.jpg')}}" alt="Legend" srcset="">
+        </div>
+
+</div>
+<h4>
+    Total Distance = {{cost}} km
+    <br>
+    <!--Route:
+    <br>
+    {% for i in range(junctionlist|length -1) %}
+    Along {{roadlist[i]}} till {{jnlist[i]}}
+    <br>
+    {% endfor %} -->
+</h4>
+       
+{% endif %}
+{% endblock %}

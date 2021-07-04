@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block head %}
+<title>Home</title>
+{% endblock %} {% block body %}
+<br />
+<h1>Home Page</h1>
+<br />
+<main role="main">
+  <div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+      <h1>Welcome</h1>
+      <p>
+        This is a demo application to predict the shortest route between two
+        junctions. This application can also be used to find the nearest
+        landmark like Hospital, Petrol Station and more. This application uses neo4j as a database, and uses flask for connectivity. 
+      </p>
+      <p>
+        This application uses Bokeh to draw a node graph which shows the junctions and the roads connecting them. Click on the "Open Map" button to proceed further.
+        For more options, use the button present on the top right of the navbar.
+      </p>
+      <p>
+        <a class="btn btn-primary" href="/mainpage" role="button"
+          >Open Map &raquo;</a
+        >
+      </p>
+      
+    </div>
+  </div>
+</main>
+{% endblock %}

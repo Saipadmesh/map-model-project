@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block head %}
+<title>Edit Road Details</title>
+{% endblock %} {% block body %}
+<br />
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+<h1>Add Road Details</h1>
+<br />
+<form action="/addrd" method="POST" autocomplete="off">
+    <label for="rname">Road Name:</label>
+    <input
+      class="form-control"
+      type="text"
+      name="rname"
+      id="rname"
+      placeholder="Enter Road Name"
+      aria-label="Enter Road Name"
+    />
+    
+    <br />
+    <label for="jname1">First Junction:</label>
+    <select name="jname1" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="jname2">Second Junction:</label>
+    <select name="jname2" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="distance">Distance:</label>
+    <input
+      class="form-control"
+      type="text"
+      name="distance"
+      id="distance"
+      placeholder="Enter distance"
+      aria-label="Enter distance"
+    />
+    <br>
+
+    
+    <input type="checkbox" name="blocked" id="blocked" class="form-check-inline" value="true">
+    <label for="blocked" class="form-check-label">Unblocked</label>
+        
+    <br>
+    <br>
+        <input type="submit" value="Add" class="btn btn-primary"/>
+</form>
+<br>
+<hr>
+<br>
+<h1>Delete Road</h1>
+<br>
+<form action="/delrd" method="POST">
+  <label for="jname1">Junction Name:</label>
+    <select name="jname1" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+        </select>
+        <br>
+  <label for="jname2">Junction Name:</label>
+  <select name="jname2" class="form-control">
+            {% for o in jnlist %}
+              <option name="{{ o }}">{{ o }}</option>
+            {% endfor %}
+  </select>
+        <br>
+
+        <input type="submit" value="Delete" class="btn btn-danger"/>
+</form>
+<br>
+<hr>
+<br>
+<h1>Edit Road</h1>
+<br>
+<form action="/editrd" method="POST">
+  <label for="jname1">Junction Name:</label>
+    <select name="jname1" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+        </select>
+        <br>
+  <label for="jname2">Junction Name:</label>
+  <select name="jname2" class="form-control">
+            {% for o in jnlist %}
+              <option name="{{ o }}">{{ o }}</option>
+            {% endfor %}
+  </select>
+        <br>
+        <input type="checkbox" name="blocked" id="blocked" class="form-check-inline" value="true">
+        <label for="blocked" class="form-check-label">Unblocked</label>
+        <br>
+        <br>
+        <input type="submit" value="Edit" class="btn btn-primary"/>
+</form>
+{% endblock %}

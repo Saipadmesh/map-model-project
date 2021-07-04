@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block head %}
+<title>Edit Junction Details</title>
+{% endblock %} {% block body %}
+<br />
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+<h1>Add Junction Details</h1>
+<br />
+<form action="/addjn" method="POST" autocomplete="off">
+    <label for="jname">Junction Name:</label>
+    <input
+      class="form-control"
+      type="text"
+      name="jname"
+      id="jname"
+      placeholder="Enter Junction Name"
+      aria-label="Enter Junction Name"
+    />
+    
+    <br />
+    <label for="jtype">Junction Type:</label>
+    <select name="jtype" class="form-control">
+        {% for o in option_list %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Add" class="btn btn-primary"/>
+</form>
+<br>
+<hr>
+<br>
+<h1>Delete Junction</h1>
+<br>
+<form action="/deljn" method="POST">
+  <label for="jname">Junction Name:</label>
+    <select name="jname" class="form-control">
+        {% for o in jnlist %}
+          <option name="{{ o }}">{{ o }}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Delete" class="btn btn-danger"/>
+</form>
+{% endblock %}
